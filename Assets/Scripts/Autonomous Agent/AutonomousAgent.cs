@@ -7,10 +7,16 @@ public class AutonomousAgent : Agent
     
     void Update()
     {
-        var gamObjects = perception.GetGameObjects();
-        foreach (var gamObject in gamObjects) 
+        var gameObjects = perception.GetGameObjects();
+        foreach (var gameObject in gameObjects) 
         {
-            Debug.DrawLine(transform.position, gamObject.transform.position);
+            Debug.DrawLine(transform.position, gameObject.transform.position);
         }
+        if(gameObjects.Length > 0) 
+        { 
+            Vector3 direction = (gameObjects[0].transform.position - transform.position).normalized;
+            movement.ApplyForce(direction * 2);
+        }
+        transform.position = Utiliities.Wrap(transform.position, new Vector3(-10, -10, -10), new Vector3(10, 10, 10));
     }
 }
