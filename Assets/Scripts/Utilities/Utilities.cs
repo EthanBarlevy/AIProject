@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public static class Utiliities
+public static class Utilities
 {
     public static Vector3 Wrap(Vector3 v, Vector3 min, Vector3 max)
     { 
@@ -18,7 +18,11 @@ public static class Utiliities
         if (result.z > max.z) { result.z = min.z; }
         else if (result.z < min.z) { result.z = max.z; }
 
-
         return result;
+    }
+
+    public static Vector3 ClampMagnitude(Vector3 v, float min, float max)
+    { 
+        return v.normalized * Mathf.Clamp(v.magnitude, min, max);
     }
 }

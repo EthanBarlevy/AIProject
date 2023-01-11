@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 608814908}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Agent01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608814907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.66, y: 1, z: 2.21}
+  m_LocalPosition: {x: -4.33, y: 1, z: 2.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -395,7 +395,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -473,13 +473,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.23116072, y: 0.7636137, z: -0.47429982, w: 0.37215406}
-  m_LocalPosition: {x: -9.030504, y: 19.333208, z: 8.735778}
+  m_LocalRotation: {x: 0.36485198, y: -0.36423117, z: 0.15780939, w: 0.8422084}
+  m_LocalPosition: {x: 9.11631, y: 9.868113, z: -8.007468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044202975
 GameObject:
@@ -509,7 +509,7 @@ MeshCollider:
   m_GameObject: {fileID: 1044202975}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1138808994}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Agent01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,7 +669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138808993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.56, y: 1, z: -2.85}
+  m_LocalPosition: {x: 2.97, y: 1, z: -3.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -774,9 +774,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602de011e5198ca4eaa479f60bd3d6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 24.8
-  maxAngle: 45
-  tagName: 
+  distance: 6.9
+  maxAngle: 110
+  tagName: Agent01
 --- !u!114 &2026914901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  minSpeed: 2.14
+  maxForce: 5
 --- !u!114 &2026914902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,7 +836,7 @@ GameObject:
   - component: {fileID: 2074822312}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Agent01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -910,7 +912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074822311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.87, y: 1, z: 0.47}
+  m_LocalPosition: {x: 5.74, y: 1, z: 2.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
