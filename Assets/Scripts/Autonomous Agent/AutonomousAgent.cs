@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class AutonomousAgent : Agent
 {
+    public Perception flockPerception;
+
+    [Range(0, 3)] public float seekWeight;
+    [Range(0, 3)] public float fleeWeight;
+
+    [Range(0, 3)] public float cohesionWeight;
+    [Range(0, 3)] public float separationWeight;
+    [Range(0, 3)] public float allignmentWeight;
+
+    [Range(0, 10)] public float separationRadius;
+
     public float wanderDistance = 1;
     public float wanderRadius = 3;
     public float wanderDisplacement = 5;
@@ -18,8 +29,16 @@ public class AutonomousAgent : Agent
         }
         if(gameObjects.Length > 0) 
         {
-            movement.ApplyForce(Steering.Seek(this, gameObjects[0]) * 0);
-            movement.ApplyForce(Steering.Flee(this, gameObjects[0]) * 1);
+            movement.ApplyForce(Steering.Seek(this, gameObjects[0]) * seekWeight);
+            movement.ApplyForce(Steering.Flee(this, gameObjects[0]) * fleeWeight);
+        }
+
+        gameObjects = flockPerception.GetGameObjects();
+        if (gameObjects.Length > 0)
+        {
+            movement.ApplyForce(Steering.Cohesion(this, gameObjects) * cohesionWeight);
+            movement.ApplyForce(Steering.Separation(this, gameObjects, separationRadius) * separationWeight);
+            movement.ApplyForce(Steering.Allignment(this, gameObjects) * allignmentWeight);
         }
 
         if (movement.acceleration.sqrMagnitude <= movement.maxForce * 0.1f)
