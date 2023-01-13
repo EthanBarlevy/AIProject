@@ -17,13 +17,13 @@ public static class Steering
     public static Vector3 Wander(AutonomousAgent agent)
     {
         // random angle adjust
-        agent.wanderAngle = agent.wanderAngle + Random.Range(-agent.wanderDisplacement, agent.wanderDisplacement);
+        agent.wanderAngle = agent.wanderAngle + Random.Range(-agent.data.wanderDisplacement, agent.data.wanderDisplacement);
         // create rotation (around y-axis)
         Quaternion rotation = Quaternion.AngleAxis(agent.wanderAngle, Vector3.up);
         // calculate point on circle
-        Vector3 point = rotation * (Vector3.forward * agent.wanderRadius);
+        Vector3 point = rotation * (Vector3.forward * agent.data.wanderRadius);
         // set point in front of agent
-        Vector3 forward = agent.transform.forward * agent.wanderDistance;
+        Vector3 forward = agent.transform.forward * agent.data.wanderDistance;
 
         Debug.DrawRay(agent.transform.position, forward + point, Color.red);
 
@@ -45,12 +45,29 @@ public static class Steering
 
     public static Vector3 Separation(Agent agent, GameObject[] neighbors, float radius)
     {
-        return Vector3.zero;
+        Vector3 separation = Vector3.zero;
+        foreach (GameObject neighbor in neighbors)
+        {
+            Vector3 direction = agent.transform.position - neighbor.transform.position;
+            if (direction.magnitude < radius)
+            {
+                separation += direction / direction.sqrMagnitude;
+            }
+        }
+
+        return CalculateSteering(agent, separation);
     }
 
-    public static Vector3 Allignment(Agent agent, GameObject[] neighbors)
+    public static Vector3 Alignment(Agent agent, GameObject[] neighbors)
     {
-        return Vector3.zero;
+        Vector3 averageVelocity = Vector3.zero;
+        foreach (GameObject neighbor in neighbors)
+        {
+            averageVelocity += neighbor.GetComponent<Agent>().movement.velocity;
+        }
+        averageVelocity /= neighbors.Length;
+
+        return CalculateSteering(agent, averageVelocity);
     }
 
     public static Vector3 CalculateSteering(Agent agent, Vector3 direction)
