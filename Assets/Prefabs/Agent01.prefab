@@ -94,8 +94,9 @@ GameObject:
   - component: {fileID: 5019916107562462518}
   - component: {fileID: 5019916107562462519}
   - component: {fileID: 5019916107562462516}
-  - component: {fileID: 5019916107562462517}
-  - component: {fileID: -3719610780396833349}
+  - component: {fileID: 8697641095035081980}
+  - component: {fileID: 6377900625258873787}
+  - component: {fileID: 7238051676838515168}
   - component: {fileID: 5019916107562462514}
   - component: {fileID: 5019916107562462515}
   - component: {fileID: 5019916107562462512}
@@ -119,6 +120,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5019916106224117537}
+  - {fileID: 6141210542438273893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,9 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90790c9e6a1bc94a807b6ec9fcde2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perception: {fileID: 5019916107562462517}
+  perception: {fileID: 6377900625258873787}
   movement: {fileID: 5019916107562462516}
-  flockPerception: {fileID: -3719610780396833349}
+  flockPerception: {fileID: 7238051676838515168}
+  obstacleAvoidance: {fileID: 8697641095035081980}
   data: {fileID: 11400000, guid: c00c481e9e4212943abc408af418a7db, type: 2}
 --- !u!114 &5019916107562462516
 MonoBehaviour:
@@ -153,7 +156,7 @@ MonoBehaviour:
   maxSpeed: 5
   minSpeed: 2.14
   maxForce: 89.5
---- !u!114 &5019916107562462517
+--- !u!114 &8697641095035081980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,13 +165,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5019916107562462513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602de011e5198ca4eaa479f60bd3d6e9, type: 3}
+  m_Script: {fileID: 11500000, guid: f96c79db35001d540a41900f6d0a0519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 6
-  maxAngle: 90
-  tagName: Agent02
---- !u!114 &-3719610780396833349
+  raycastTransform: {fileID: 6141210542438273893}
+  distance: 4.8
+  maxAngle: 45
+  numRaycast: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &6377900625258873787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,12 +184,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 5019916107562462513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602de011e5198ca4eaa479f60bd3d6e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 161dbfc462813404ea777e5688ffd19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 4.5
+  maxAngle: 45
+  tagName: Agent02
+  raycastTransform: {fileID: 6141210542438273893}
+  numRaycast: 10
+--- !u!114 &7238051676838515168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019916107562462513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161dbfc462813404ea777e5688ffd19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 8
-  maxAngle: 180
+  maxAngle: 45
   tagName: Agent01
+  raycastTransform: {fileID: 6141210542438273893}
+  numRaycast: 10
 --- !u!33 &5019916107562462514
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -247,3 +273,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8753679969524634818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6141210542438273893}
+  m_Layer: 0
+  m_Name: Eye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6141210542438273893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753679969524634818}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5019916107562462518}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
