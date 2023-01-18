@@ -27,8 +27,7 @@ public class DistancePerception : Perception
 			}
 		}
 
-		result.Sort(CompareDistance);
-
+		SortByDistance(result);
 		return result.ToArray();
     }
 }

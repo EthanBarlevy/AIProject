@@ -16,6 +16,7 @@ public class RaycastPerception : Perception
 		{
 			// cast ray from transform position towards direction 
 			Ray ray = new Ray(raycastTransform.position, raycastTransform.rotation * direction);
+			//Debug.DrawLine(raycastTransform.position, direction);
 			if (Physics.Raycast(ray, out RaycastHit raycastHit, distance))
 			{
 				// don't perceive self 
@@ -30,7 +31,7 @@ public class RaycastPerception : Perception
 		}
 
 		// sort results by distance 
-		result.Sort(CompareDistance);
+		SortByDistance(result);
 		return result.ToArray();
 	}
 }

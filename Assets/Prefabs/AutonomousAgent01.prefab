@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5019916107562462515}
   - component: {fileID: 5019916107562462512}
   m_Layer: 0
-  m_Name: Agent01
+  m_Name: AutonomousAgent01
   m_TagString: Agent01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,9 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastTransform: {fileID: 6141210542438273893}
-  distance: 4.8
-  maxAngle: 45
-  numRaycast: 10
+  distance: 7.5
+  maxAngle: 90
+  numRaycast: 24
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -187,11 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161dbfc462813404ea777e5688ffd19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 4.5
-  maxAngle: 45
+  distance: 15
+  maxAngle: 80
   tagName: Agent02
   raycastTransform: {fileID: 6141210542438273893}
-  numRaycast: 10
+  numRaycast: 24
 --- !u!114 &7238051676838515168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,10 +205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 8
-  maxAngle: 45
+  maxAngle: 150
   tagName: Agent01
   raycastTransform: {fileID: 6141210542438273893}
-  numRaycast: 10
+  numRaycast: 24
 --- !u!33 &5019916107562462514
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -297,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8753679969524634818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalPosition: {x: 0, y: 0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

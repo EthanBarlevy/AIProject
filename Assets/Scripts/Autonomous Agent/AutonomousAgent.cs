@@ -5,24 +5,22 @@ using UnityEngine.AI;
 
 public class AutonomousAgent : Agent
 {
-    public Perception flockPerception;
+    [SerializeField] private Perception flockPerception;
     public ObstacleAvoidance obstacleAvoidance;
 	public AutonomousAgentData data;
 
 	public float wanderAngle { get; set; } = 0;
     void Update()
     {
+        // seek flee
         var gameObjects = perception.GetGameObjects();
-        foreach (var gameObject in gameObjects) 
-        {
-            Debug.DrawLine(transform.position, gameObject.transform.position);
-        }
         if(gameObjects.Length > 0) 
         {
             movement.ApplyForce(Steering.Seek(this, gameObjects[0]) * data.seekWeight);
             movement.ApplyForce(Steering.Flee(this, gameObjects[0]) * data.fleeWeight);
         }
 
+        // flock
         gameObjects = flockPerception.GetGameObjects();
         if (gameObjects.Length > 0)
         {
@@ -31,12 +29,14 @@ public class AutonomousAgent : Agent
             movement.ApplyForce(Steering.Alignment(this, gameObjects) * data.alignmentWeight);
         }
 
+        // obstacle avoidance
         if(obstacleAvoidance.IsObstacleInFront())
         {
             Vector3 direction = obstacleAvoidance.GetOpenDirection();
             movement.ApplyForce(Steering.CalculateSteering(this, direction) * data.obstacleWeight);
         }
 
+        // wander
         if (movement.acceleration.sqrMagnitude <= movement.maxForce * 0.1f)
         {
             movement.ApplyForce(Steering.Wander(this));
