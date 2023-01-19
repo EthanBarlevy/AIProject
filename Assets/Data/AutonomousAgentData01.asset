@@ -15,10 +15,10 @@ MonoBehaviour:
   wanderDistance: 2
   wanderRadius: 5
   wanderDisplacement: 20
-  separationRadius: 2
-  seekWeight: 3
-  fleeWeight: 1
+  separationRadius: 4
+  seekWeight: 1
+  fleeWeight: 0
   cohesionWeight: 1.3
-  separationWeight: 1.35
+  separationWeight: 2
   alignmentWeight: 1
   obstacleWeight: 5

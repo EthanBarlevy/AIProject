@@ -10,6 +10,7 @@ public class AutonomousAgent : Agent
 	public AutonomousAgentData data;
 
 	public float wanderAngle { get; set; } = 0;
+
     void Update()
     {
         // seek flee
@@ -42,6 +43,9 @@ public class AutonomousAgent : Agent
             movement.ApplyForce(Steering.Wander(this));
         }
 
-        transform.position = Utilities.Wrap(transform.position, new Vector3(-20, -20, -20), new Vector3(20, 20, 20));
+        Vector3 position = transform.position;
+        position = Utilities.Wrap(position, new Vector3(-20, -20, -20), new Vector3(20, 20, 20));
+        position.y = 0;
+        transform.position = position;
     }
 }
