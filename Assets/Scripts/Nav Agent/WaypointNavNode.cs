@@ -11,7 +11,7 @@ public class WaypointNavNode : NavNode
         {
             if (navAgent.targetNode == this && neighbors.Count > 0)
             {
-                navAgent.targetNode = neighbors[Random.Range(0, neighbors.Count)];
+                navAgent.targetNode = navAgent.GetNextTarget(navAgent.targetNode);
             }
         }
     }
@@ -22,8 +22,8 @@ public class WaypointNavNode : NavNode
         {
             if (navAgent.targetNode == this && neighbors.Count > 0)
             {
-                navAgent.targetNode = neighbors[Random.Range(0, neighbors.Count)];
-            }
+                navAgent.targetNode = navAgent.GetNextTarget(navAgent.targetNode);
+			}
         }
     }
 
