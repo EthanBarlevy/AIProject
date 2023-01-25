@@ -9,7 +9,7 @@ public static class Path
 	public static bool Dijkstra(NavNode start, NavNode end, ref List<NavNode> path)
 	{
 		bool found = false;
-
+		//
 		// create priority queue
 		var nodes = new SimplePriorityQueue<NavNode>();
 
