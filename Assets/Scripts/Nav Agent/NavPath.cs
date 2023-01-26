@@ -61,7 +61,7 @@ public class NavPath : MonoBehaviour
 			Gizmos.color = Color.blue;
 			Gizmos.DrawWireSphere(node.gameObject.transform.position, node.radius);
 		}
-		if (startNode != null) Gizmos.DrawIcon(startNode.transform.position + Vector3.up, "nav_nodeA.png", true, Color.green);
-		if (endNode != null) Gizmos.DrawIcon(endNode.transform.position + Vector3.up, "nav_nodeA.png", true, Color.red);
+		if (startNode != null) Gizmos.DrawIcon(startNode.transform.position + Vector3.up, "Node.png", true, Color.green);
+		if (endNode != null) Gizmos.DrawIcon(endNode.transform.position + Vector3.up, "Node.png", true, Color.red);
 	}
 }
