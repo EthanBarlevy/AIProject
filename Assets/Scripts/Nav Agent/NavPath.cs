@@ -6,10 +6,18 @@ using UnityEngine.UIElements;
 
 public class NavPath : MonoBehaviour
 {
+	public EndAction endAction = EndAction.RANDOM;
 	List<NavNode> path = new List<NavNode>();
 
 	public NavNode startNode { get; set; }
 	public NavNode endNode { get; set; }
+
+	public enum EndAction
+	{ 
+		RANDOM,
+		BOOMERANG,
+		STOP
+	}
 
 	public void StartPath()
 	{
@@ -21,13 +29,24 @@ public class NavPath : MonoBehaviour
 		if (path.Count == 0) return null;
 
 		int index = path.FindIndex(node => node == navNode);
-		// check if noode index is at the end of the path
+		// check if node index is at the end of the path
 		if (index == path.Count - 1)
 		{
-			SetRandomEndNode();
+			if(endAction == EndAction.STOP) 
+			{
+				return null;
+			}
+			else if (endAction == EndAction.BOOMERANG) 
+			{
+				FlipDirection();
+			}
+			else if(endAction == EndAction.RANDOM)
+			{ 
+				SetRandomEndNode();
+
+			}
 			// generate new path
 			GeneratePath();
-
 			index = 0;
 		}
 
@@ -35,6 +54,13 @@ public class NavPath : MonoBehaviour
 		NavNode nextNode = path[index + 1];
 
 		return nextNode;
+	}
+
+	private void FlipDirection()
+	{
+		var tempNode = startNode;
+		startNode = endNode;
+		endNode = tempNode;
 	}
 
 	private void SetRandomEndNode()
@@ -51,14 +77,14 @@ public class NavPath : MonoBehaviour
 	private void GeneratePath()
 	{
 		NavNode.ResetNodes();
-		Path.Dijkstra(startNode, endNode, ref path);
+		Path.AStar(startNode, endNode, ref path);
 	}
 
 	private void OnDrawGizmos()
 	{
 		foreach (NavNode node in path)
 		{
-			Gizmos.color = Color.blue;
+			Gizmos.color = Color.white;
 			Gizmos.DrawWireSphere(node.gameObject.transform.position, node.radius);
 		}
 		if (startNode != null) Gizmos.DrawIcon(startNode.transform.position + Vector3.up, "Node.png", true, Color.green);

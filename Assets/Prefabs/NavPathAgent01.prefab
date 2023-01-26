@@ -138,7 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perception: {fileID: 0}
   movement: {fileID: 5019916107562462516}
-  startNode: {fileID: 0}
+  navPath: {fileID: 4076595168074619563}
+  navPathStartNode: {fileID: 0}
+  navPathEndNode: {fileID: 0}
 --- !u!114 &4076595168074619563
 MonoBehaviour:
   m_ObjectHideFlags: 0
