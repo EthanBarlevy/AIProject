@@ -12,6 +12,7 @@ public class NavAgentPlayerController : MonoBehaviour
 
     void Start()
     {
+        if (cam = null) cam = Camera.main;
         surface.BuildNavMesh();
     }
 
