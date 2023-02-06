@@ -6,7 +6,8 @@ public class StateAgent : Agent
 {
     public StateMachine stateMachine = new StateMachine();
     public GameObject[] perceived;
-    public Camera mainCamera;
+
+    private Camera mainCamera;
 
     void Start()
     {

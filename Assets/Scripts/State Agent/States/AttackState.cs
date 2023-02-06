@@ -16,8 +16,9 @@ public class AttackState : State
         owner.navigation.targetNode = null;
         owner.movement.Stop();
         owner.animator.SetTrigger("attack");
+
         AnimationClip[] clips = owner.animator.runtimeAnimatorController.animationClips;
-        AnimationClip clip = clips.FirstOrDefault<AnimationClip>(clip => clip.name == "Mutant Punch");
+        AnimationClip clip = clips.FirstOrDefault<AnimationClip>(clip => clip.name == "Punch");
         timer = (clip != null) ? clip.length : 1;
     }
 
@@ -29,7 +30,7 @@ public class AttackState : State
     public override void OnUpdate()
     {
         timer -= Time.deltaTime;
-        if(timer < 0) 
+        if(timer <= 0) 
         { 
             owner.stateMachine.StartState(nameof(ChaseState));
         }
