@@ -52,10 +52,16 @@ public class StateAgent : Agent
 		stateMachine.AddTransition(nameof(PatrolState), new Transition(new Condition[] { enemySeenCondition, healthOkCondition }), nameof(ChaseState));
 		stateMachine.AddTransition(nameof(PatrolState), new Transition(new Condition[] { enemySeenCondition, healthLowCondition }), nameof(EvadeState));
 
-        stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNotSeenCondition }), nameof(IdleState));
-        stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNearCondition }), nameof(AttackState));
+		stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNotSeenCondition, timerExpiredCondition }), nameof(IdleState));
+		stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNearCondition }), nameof(AttackState));
+
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { atDestinationCondition }), nameof(IdleState));
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { enemySeenCondition, healthOkCondition }), nameof(ChaseState));
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { enemySeenCondition, healthLowCondition }), nameof(EvadeState));
         
         stateMachine.AddTransition(nameof(AttackState), new Transition(new Condition[] { enemyNotNearCondition}), nameof(ChaseState));
+
+        stateMachine.AddTransition(nameof(EvadeState), new Transition(new Condition[] { enemyNotSeenCondition }), nameof(IdleState));
 
 		stateMachine.AddAnyTransition(new Transition(new Condition[] { deathCondition }), nameof(DeathState));
 

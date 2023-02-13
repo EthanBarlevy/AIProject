@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RaycastPerception : Perception
@@ -29,9 +30,11 @@ public class RaycastPerception : Perception
 				}
 			}
 		}
+		// remove duplicates
+		result = result.Distinct().ToList();
+		// sort results by distance
+		result.Sort(CompareDistance);
 
-		// sort results by distance 
-		SortByDistance(result);
 		return result.ToArray();
 	}
 }
