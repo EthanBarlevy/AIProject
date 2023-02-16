@@ -77,9 +77,9 @@ public class StateAgent : Agent
         enemyDistance.value = (enemySeen) ? (Vector3.Distance(transform.position, perceived[0].transform.position)) : float.MaxValue;
         timer.value -= Time.deltaTime;
         atDestination.value = ((movement.destination - transform.position).sqrMagnitude <= 1);
-        animationDone.value = (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
+		animationDone.value = (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f && !animator.IsInTransition(0));
 
-        stateMachine.Update();
+		stateMachine.Update();
         if (navigation.targetNode != null)
         {
             movement.MoveTowards(navigation.targetNode.transform.position);

@@ -40,10 +40,5 @@ public class AttackState : State
 
     public override void OnUpdate()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0) 
-        { 
-            owner.stateMachine.StartState(nameof(ChaseState));
-        }
     }
 }
